@@ -75,29 +75,35 @@ pipeline {
 
         stage('Verify Deployment') {
             steps {
-                sh '''
+                sh """
                     set -eu
 
                     echo "Checking container status..."
                     docker compose -p "$COMPOSE_PROJECT_NAME" ps
 
-                    echo "Waiting for the frontend..."
+                    echo "Waiting for the API through Nginx..."
                     attempt=0
-                    until curl -fsS http://localhost/ >/dev/null; do
+
+                    until curl -fsS http://localhost/api/; do
                         attempt=$((attempt + 1))
-                        if [ "$attempt" -ge 12 ]; then
-                            echo "Frontend health check failed."
-                            docker compose -p "$COMPOSE_PROJECT_NAME" logs --tail=80
+
+                        if [ "$attempt" -ge 24 ]; then
+                            echo "API health check failed after 120 seconds."
+                            docker compose -p "$COMPOSE_PROJECT_NAME" ps
+                            docker compose -p "$COMPOSE_PROJECT_NAME" logs --tail=100 backend frontend
                             exit 1
                         fi
+
                         sleep 5
                     done
 
-                    echo "Checking the API through Nginx..."
-                    curl -fsS http://localhost/api/
                     echo
+                    echo "Checking database connectivity..."
+                    curl -fsS http://localhost/api/db-test
+                    echo
+
                     echo "SkillBridge deployment verification passed."
-                '''
+                """
             }
         }
     }
