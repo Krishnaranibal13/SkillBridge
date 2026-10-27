@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 export default function Profile({ token, onNavigate, onLogout }) {
   const [user, setUser] = useState(null);

@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import Internships from "./components/internships";
+import Internships from "./components/Internships.jsx";
 import Applications from "./components/Applications";
 import Certificates from "./components/Certificates";
 import Skills from "./components/Skills";
@@ -12,7 +12,7 @@ import AdminInternships from "./components/AdminInternships";
 import AdminApplications from "./components/AdminApplications";
 import AdminStudents from "./components/AdminStudents";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 function App() {
   const [token, setToken] = useState(() =>

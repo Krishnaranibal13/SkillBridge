@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 const emptyForm = { company_name:"", job_title:"", description:"", location:"Ratnapura", work_type:"Hybrid", duration:"6 months", application_deadline:"", requirements:"", status:"Open" };
 

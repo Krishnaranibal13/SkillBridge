@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 export default function Skills({ token, onNavigate, onLogout }) {
   const [skills, setSkills] = useState([]);

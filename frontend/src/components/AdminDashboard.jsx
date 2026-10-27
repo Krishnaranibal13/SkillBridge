@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 export default function AdminDashboard({ token, onNavigate, onLogout }){
   const [students,setStudents]=useState([]);
