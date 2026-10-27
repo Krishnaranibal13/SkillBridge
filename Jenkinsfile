@@ -75,7 +75,7 @@ pipeline {
 
         stage('Verify Deployment') {
             steps {
-                sh """
+                sh '''
                     set -eu
 
                     echo "Checking container status..."
@@ -103,7 +103,7 @@ pipeline {
                     echo
 
                     echo "SkillBridge deployment verification passed."
-                """
+                '''
             }
         }
     }
